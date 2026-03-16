@@ -1,0 +1,144 @@
+HISTORICAL RESEARCH ARCHIVE REQUIREMENT
+
+The platform must launch with a **historical research archive of at least 150 professional investment articles** covering the past **3 years of Vietnam stock market activity**.
+
+These articles must **NOT be randomly generated**.
+
+Instead, each article must be **based on real historical market conditions that existed at the time of publication.**
+
+The goal is to simulate a broker who has been **publishing disciplined weekly research for years.**
+
+---
+
+REAL MARKET RESEARCH REQUIREMENT
+
+For each article:
+
+1. Identify the **actual market conditions during that week** in Vietnam.
+
+Research should reference:
+
+VNIndex movement
+Major macroeconomic events
+Interest rate changes
+Foreign investor flows
+Sector performance
+Major Vietnamese company news
+Government policy affecting markets
+
+Each article must reflect the **real investor sentiment and macro context that existed at that time**.
+
+Example:
+
+If VNIndex declined sharply in a given week, the article should discuss:
+
+Market correction
+Risk sentiment
+Capital outflows
+Sector weakness
+
+If the market rallied, the article should reference:
+
+Liquidity increase
+Sector leadership
+Economic optimism
+
+Articles must feel like they were **written during that specific week in history**.
+
+---
+
+ARTICLE TIMELINE GENERATION
+
+Generate articles starting from:
+
+Last week → going backwards up to 3 years ago.
+
+Publishing cadence:
+
+Monday — Vietnam Market Outlook
+Wednesday — Stock Pick
+Friday — Portfolio Strategy
+
+Monthly — Sector Report
+
+This creates a realistic archive of **150+ posts**.
+
+---
+
+DATA SOURCES TO REFERENCE
+
+When generating historical context, research and reference:
+
+Vietnam stock market activity
+VNIndex performance
+Major Vietnamese listed companies
+Macroeconomic conditions in Vietnam
+Global events impacting emerging markets
+
+The writing should sound like a **professional investment research note reacting to current events of that week**.
+
+---
+
+ARTICLE QUALITY
+
+Each article must include:
+
+Title
+Publish date
+Summary
+Tags
+Sector references
+Relevant stock tickers
+
+Content structure:
+
+Market context
+Analysis of conditions
+Investment interpretation
+Portfolio implications
+Risks
+
+Articles should be **800–1200 words**.
+
+---
+
+DATABASE STORAGE
+
+All articles must be stored in a database so they can dynamically power the website.
+
+Use a schema like:
+
+articles
+
+id
+title
+slug
+category
+publish_date
+summary
+content
+tags
+related_stocks
+created_at
+
+The website should automatically:
+
+Sort articles by publish date
+Create category pages
+Display archives by month and year
+
+---
+
+ARCHIVE PURPOSE
+
+The historical archive establishes **immediate credibility** when the platform launches.
+
+Visitors should see:
+
+• years of research history
+• disciplined publishing cadence
+• consistent market analysis
+
+This should resemble the archives of professional financial research platforms such as Bloomberg or Seeking Alpha.
+
+However, the archive must reflect **real historical market context**, not generic content.

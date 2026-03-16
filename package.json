@@ -1,0 +1,33 @@
+{
+  "name": "caonhi-broker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "clsx": "^2.1.1",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.1.6",
+    "framer-motion": "^12.36.0",
+    "next": "^16.1.6",
+    "next-intl": "^4.8.3",
+    "next-mdx-remote": "^6.0.0",
+    "postcss": "^8.5.8",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-hook-form": "^7.71.2",
+    "resend": "^6.9.3",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
+    "zod": "^4.3.6"
+  }
+}
