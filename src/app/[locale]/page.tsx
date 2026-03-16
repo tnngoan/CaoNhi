@@ -26,7 +26,7 @@ export default function HomePage() {
           <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-gold-400 blur-3xl" />
         </div>
 
-        <div className="container-main relative flex min-h-screen items-center pt-20">
+        <div className="container-main relative flex min-h-screen items-center pt-20 pb-32">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             {/* Text */}
             <motion.div
@@ -103,7 +103,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative -mt-16 z-10">
+      <section className="py-16 bg-navy-50">
         <div className="container-main">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
             <StatCard value={5} label={t("statsYears")} delay={0} />
