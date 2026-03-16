@@ -45,14 +45,14 @@ export default function StatCard({
     <AnimatedSection delay={delay}>
       <div
         ref={ref}
-        className="rounded-xl border border-navy-700 bg-navy-800/50 p-6 text-center backdrop-blur-sm"
+        className="rounded-xl border border-navy-200 bg-white p-6 text-center shadow-sm"
       >
-        <div className="font-heading text-3xl font-bold text-gold-400 md:text-4xl">
+        <div className="font-heading text-3xl font-bold text-gold-600 md:text-4xl">
           {prefix}
           {count.toLocaleString()}
           {suffix}
         </div>
-        <p className="mt-2 text-sm text-navy-300">{label}</p>
+        <p className="mt-2 text-sm text-navy-600">{label}</p>
       </div>
     </AnimatedSection>
   );
