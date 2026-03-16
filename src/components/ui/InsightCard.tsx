@@ -28,8 +28,8 @@ export default function InsightCard({
         <article className="rounded-xl border border-navy-200 bg-white overflow-hidden shadow-sm transition-all hover:border-gold-400 hover:shadow-md">
           {/* Color bar header */}
           <div className="h-2 gold-gradient" />
-          <div className="p-6">
-            <div className="flex items-center gap-3 text-xs">
+          <div className="p-4 sm:p-6">
+            <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3">
               <span className="rounded-full bg-navy-100 px-3 py-1 font-medium text-navy-600">
                 {category}
               </span>

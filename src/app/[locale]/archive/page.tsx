@@ -139,7 +139,7 @@ export default function ArchivePage() {
           </div>
 
           {/* Category tabs */}
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
+          <div className="mt-6 flex gap-2 overflow-x-auto pb-2 sm:mt-8 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0">
             {categories.map((cat) => (
               <button
                 key={cat.key}
@@ -147,7 +147,7 @@ export default function ArchivePage() {
                   setActiveCategory(cat.key);
                   setPage(1);
                 }}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm ${
                   activeCategory === cat.key
                     ? "gold-gradient text-navy-900"
                     : "bg-navy-100 text-navy-600 hover:bg-navy-200"
@@ -160,7 +160,7 @@ export default function ArchivePage() {
             {/* Month filter toggle */}
             <button
               onClick={() => setShowMonthPanel(!showMonthPanel)}
-              className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              className={`flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm ${
                 selectedMonth !== "all"
                   ? "gold-gradient text-navy-900"
                   : "bg-navy-100 text-navy-600 hover:bg-navy-200"
@@ -243,7 +243,7 @@ export default function ArchivePage() {
           </div>
 
           {/* Article grid */}
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {paginated.map((article, i) => (
               <ArticleCard
                 key={article.id}

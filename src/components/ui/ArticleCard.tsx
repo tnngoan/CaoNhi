@@ -47,21 +47,19 @@ export default function ArticleCard({
   return (
     <AnimatedSection delay={delay}>
       <Link href={`/archive/${slug}`} className="group block">
-        <article className="rounded-xl border border-navy-200 bg-white p-5 shadow-sm transition-all hover:border-gold-400 hover:shadow-md">
+        <article className="rounded-xl border border-navy-200 bg-white p-4 shadow-sm transition-all hover:border-gold-400 hover:shadow-md sm:p-5">
           {/* Header */}
-          <div className="flex items-center gap-2 text-xs">
+          <div className="flex flex-wrap items-center gap-1.5 text-xs sm:gap-2">
             <span
               className={`rounded-full px-2.5 py-0.5 font-medium ${categoryColors[category]}`}
             >
               {categoryLabels[category][locale]}
             </span>
-            <span className="text-navy-400">{dateFormatted}</span>
-            <span className="text-navy-300">·</span>
-            <span className="text-navy-400">{readTime} phút đọc</span>
+            <span className="text-navy-400">{dateFormatted} · {readTime} phút đọc</span>
           </div>
 
           {/* Title */}
-          <h3 className="mt-3 font-heading text-lg font-bold leading-snug text-navy-900 transition-colors group-hover:text-gold-600">
+          <h3 className="mt-2.5 font-heading text-base font-bold leading-snug text-navy-900 transition-colors group-hover:text-gold-600 sm:mt-3 sm:text-lg">
             {title}
           </h3>
 
