@@ -10,15 +10,15 @@ import { cn } from "@/lib/utils";
 const primaryLinks = [
   { href: "/", key: "home" },
   { href: "/about", key: "about" },
+  { href: "/philosophy", key: "philosophy" },
   { href: "/services", key: "services" },
+  { href: "/research", key: "research" },
   { href: "/archive", key: "archive" },
   { href: "/insights", key: "insights" },
   { href: "/contact", key: "contact" },
 ] as const;
 
 const moreLinks = [
-  { href: "/philosophy", key: "philosophy" },
-  { href: "/research", key: "research" },
   { href: "/track-record", key: "trackRecord" },
   { href: "/testimonials", key: "testimonials" },
   { href: "/resources", key: "resources" },
