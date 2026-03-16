@@ -1,25 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
+const primaryLinks = [
   { href: "/", key: "home" },
   { href: "/about", key: "about" },
-  { href: "/philosophy", key: "philosophy" },
-  { href: "/insights", key: "insights" },
-  { href: "/archive", key: "archive" },
-  { href: "/research", key: "research" },
   { href: "/services", key: "services" },
+  { href: "/archive", key: "archive" },
+  { href: "/insights", key: "insights" },
+  { href: "/contact", key: "contact" },
+] as const;
+
+const moreLinks = [
+  { href: "/philosophy", key: "philosophy" },
+  { href: "/research", key: "research" },
   { href: "/track-record", key: "trackRecord" },
   { href: "/testimonials", key: "testimonials" },
   { href: "/resources", key: "resources" },
-  { href: "/contact", key: "contact" },
 ] as const;
+
+const allLinks = [...primaryLinks, ...moreLinks];
 
 export default function Navbar() {
   const t = useTranslations("nav");
@@ -28,6 +33,8 @@ export default function Navbar() {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -35,10 +42,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
   const switchLocale = () => {
     const newLocale = locale === "vi" ? "en" : "vi";
     router.replace(pathname, { locale: newLocale });
   };
+
+  const isMoreActive = moreLinks.some((l) => pathname === l.href);
 
   return (
     <>
@@ -58,7 +78,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 text-white font-heading"
+              className="flex shrink-0 items-center gap-2 text-white font-heading"
             >
               <div className="flex h-8 w-8 items-center justify-center rounded-md gold-gradient lg:h-10 lg:w-10">
                 <span className="text-sm font-bold text-navy-900 lg:text-base">
@@ -69,13 +89,13 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden items-center gap-1 xl:flex">
-              {navLinks.map((link) => (
+            <nav className="hidden items-center gap-0.5 xl:flex">
+              {primaryLinks.map((link) => (
                 <Link
                   key={link.key}
                   href={link.href}
                   className={cn(
-                    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                    "whitespace-nowrap rounded-md px-2.5 py-2 text-[13px] font-medium transition-colors",
                     pathname === link.href
                       ? "text-gold-400"
                       : "text-navy-200 hover:text-white"
@@ -84,20 +104,75 @@ export default function Navbar() {
                   {t(link.key)}
                 </Link>
               ))}
+
+              {/* More dropdown */}
+              <div ref={moreRef} className="relative">
+                <button
+                  onClick={() => setMoreOpen(!moreOpen)}
+                  className={cn(
+                    "flex whitespace-nowrap items-center gap-1 rounded-md px-2.5 py-2 text-[13px] font-medium transition-colors",
+                    isMoreActive
+                      ? "text-gold-400"
+                      : "text-navy-200 hover:text-white"
+                  )}
+                >
+                  {locale === "vi" ? "Thêm" : "More"}
+                  <svg
+                    className={cn(
+                      "h-3.5 w-3.5 transition-transform",
+                      moreOpen && "rotate-180"
+                    )}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                <AnimatePresence>
+                  {moreOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 top-full mt-1 w-48 rounded-lg border border-navy-700 bg-navy-900/98 py-1.5 shadow-xl backdrop-blur-md"
+                    >
+                      {moreLinks.map((link) => (
+                        <Link
+                          key={link.key}
+                          href={link.href}
+                          onClick={() => setMoreOpen(false)}
+                          className={cn(
+                            "block whitespace-nowrap px-4 py-2 text-[13px] font-medium transition-colors",
+                            pathname === link.href
+                              ? "text-gold-400"
+                              : "text-navy-200 hover:bg-navy-800 hover:text-white"
+                          )}
+                        >
+                          {t(link.key)}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </nav>
 
             {/* Right side */}
-            <div className="flex items-center gap-3">
+            <div className="flex shrink-0 items-center gap-2">
               <button
                 onClick={switchLocale}
-                className="rounded-md border border-navy-400 px-3 py-1.5 text-xs font-semibold text-navy-200 transition-colors hover:border-gold-400 hover:text-gold-400"
+                className="rounded-md border border-navy-400 px-2.5 py-1.5 text-xs font-semibold text-navy-200 transition-colors hover:border-gold-400 hover:text-gold-400"
               >
                 {t("language")}
               </button>
 
               <Link
                 href="/contact"
-                className="hidden rounded-md gold-gradient px-4 py-2 text-sm font-semibold text-navy-900 transition-transform hover:scale-105 sm:inline-block"
+                className="hidden whitespace-nowrap rounded-md gold-gradient px-3.5 py-2 text-[13px] font-semibold text-navy-900 transition-transform hover:scale-105 sm:inline-block"
               >
                 {t("bookConsultation")}
               </Link>
@@ -143,7 +218,7 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-navy-900/98 backdrop-blur-lg xl:hidden"
           >
             <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
-              {navLinks.map((link, i) => (
+              {allLinks.map((link, i) => (
                 <motion.div
                   key={link.key}
                   initial={{ opacity: 0, y: 20 }}
