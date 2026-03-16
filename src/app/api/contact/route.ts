@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
       await resend.emails.send({
         from: "Cao Nhi Website <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL || "caonhi@mbs.com.vn",
+        to: process.env.CONTACT_EMAIL || "nhi.ncpn@gmail.com",
         subject: `New Consultation Request from ${name}`,
         html: `
           <h2>New Consultation Request</h2>
