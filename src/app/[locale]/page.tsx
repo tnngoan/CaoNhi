@@ -70,12 +70,12 @@ export default function HomePage() {
             >
               <div className="relative">
                 <div className="absolute -inset-4 rounded-2xl gold-gradient opacity-20 blur-xl" />
-                <div className="relative h-80 w-80 overflow-hidden rounded-2xl border-2 border-gold-500/30 sm:h-96 sm:w-96">
+                <div className="relative h-[28rem] w-80 overflow-hidden rounded-2xl border-2 border-gold-500/30 sm:h-[32rem] sm:w-96">
                   <Image
                     src="/images/avatar.jpg"
                     alt="Cao Nhi - Stock Broker at MBS"
                     fill
-                    className="object-cover"
+                    className="object-cover object-top"
                     priority
                   />
                 </div>
